@@ -1,0 +1,57 @@
+\documentclass[extrafontsizes,14pt]{memoir}
+% Base fonts available for memoir are:
+% 9pt, 10pt, 11pt, 12pt, 14pt, 17pt, 20pt, 25pt, 
+% 30pt, 36pt, 48pt and 60pt
+%
+% The best font size for a printed service book used by the clergy is 14.
+% For a printed service book used by the people, set it to 11 or 12.
+% For a PDF to be viewed on a smart phone or a tablet, set it to 20.
+%
+%
+% Note: keys must not have an underscore _ as part of the value.
+%
+% Issue: when using a font size greater than 12pt, the Greek might
+% spill outside the margin when doing bilingual text.  This problem will exist until I figure out
+% how to get hyphenation to work for Greek.
+%
+\input{ocmcStructure} % includes packages and creates new commands
+\begin{document}
+\pretitle{
+\begin{center}
+\includegraphics[width=.5\textwidth]{images/icxcnika.jpg}\\
+}
+\title{
+\huge\ltSid{"vespersforsunday"}{"p0001.title.cover"}\\
+}
+\posttitle{
+\vspace{5em}\normalsize\ltSid{"pub.priest.servicebook"}{"li.patriarchate.alexandria"}
+\end{center}
+} 
+\thispagestyle{empty}
+\vfill
+
+\date{\vspace{-5ex}}
+\maketitle
+
+\normalsize
+
+
+\frontmatter
+
+\pagebreak
+
+\tableofcontents
+
+\vfill
+
+\pagebreak
+
+\mainmatter
+
+\include{tmp.vespersforsunday}
+
+\vfill
+
+\pagebreak
+
+\end{document}

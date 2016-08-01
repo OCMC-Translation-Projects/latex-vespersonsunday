@@ -1,0 +1,131 @@
+% Author: Michael Colburn
+% specifies packages and defines new commands for purposes
+% of typesetting liturgical books for the Eastern Orthodox Christian Church
+% 
+% the prefix 'lt' means 'liturgical text'.  This prefix was added to commands
+% to avoid collisions with commands named by other packages.
+%
+% This system uses key-value pairs for the language files.  LaTeX does
+% not allow non-alpha characters as the key name.  You can avoid this
+% problem by putting them in quotes, e.g. "p001".  
+% The value (text is not put in  quotes)
+%
+
+\input{control} % control.tex allows you to easily change settings
+
+%================================================
+% Packages
+%================================================
+\usepackage[protrusion=false]{microtype}
+\usepackage{color}
+\usepackage{xcolor}
+\definecolor{ocre}{RGB}{243,102,25} % Define the orange color used for highlighting throughout the book
+\definecolor{auburn}{rgb}{0.43, 0.21, 0.1}
+
+
+\usepackage{titlesec}
+\usepackage{etoolbox}
+\usepackage{microtype} % Slightly tweak font spacing for aesthetics
+\usepackage[T1]{fontenc} % Output font encoding for international characters
+\usepackage[osf]{libertine} % Use the Libertine font
+\usepackage{xifthen}
+\usepackage{catchfilebetweentags} % for doing key based look ups of text
+\usepackage{parskip}
+\usepackage{titling}
+\usepackage{trimspaces}
+
+%----------------------------------------------------------------------------------------
+% Need to add the following back into master copy of OCMC Structure
+%----------------------------------------------------------------------------------------
+
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage{lineno}
+
+% The following 4 lines are for Chinese, Japanese, and Korean
+\usepackage{xeCJK}
+\setCJKmainfont{UnGungseo.ttf}
+\setCJKsansfont{UnGungseo.ttf}
+\setCJKmonofont{gulim.ttf}
+
+%----------------------------------------------------------------------------------------
+% End of Section to be added back into master copy of OCMC Structure
+%----------------------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------------------
+%	HYPERLINKS IN THE DOCUMENTS
+%----------------------------------------------------------------------------------------
+
+\usepackage{hyperref}
+\hypersetup{
+  hidelinks
+  ,backref=true
+  ,pagebackref=true
+  ,hyperindex=true
+  ,colorlinks=true
+  ,citecolor=blue
+  ,filecolor=blue
+  ,linkcolor=blue
+  ,urlcolor= ocre
+  ,breaklinks=true
+  ,bookmarks=true
+  ,bookmarksopen=false
+  ,pdftitle={Title}
+  ,pdfauthor={Author}
+}
+\usepackage{bookmark}
+\bookmarksetup{
+open,
+numbered,
+addtohook={%
+\ifnum\bookmarkget{level}=0 % chapter
+\bookmarksetup{bold}%
+\fi
+\ifnum\bookmarkget{level}=-1 % part
+\bookmarksetup{color=ocre,bold}%
+\fi
+}
+}
+
+%=========================================================
+% Global Settings
+%=========================================================
+\setlength{\parindent}{0em} % turns off indenting of paragraphs.  Comment out to turn on.
+\setlength{\parskip}{.5em}  % spacing between paragraphs
+\setsecnumdepth{none}
+\maxsecnumdepth{none}
+\titleformat{\section}[block]{\color{blue}\Large\bfseries\filcenter}{}{1em}{}
+\pagestyle{ruled}
+\makeevenhead{ruled}{}{\rightmark}{\thepage}
+\makeoddhead{ruled}{\thepage}{\leftmark}{}
+\makeevenfoot{ruled}{}{}{}
+\makeoddfoot{ruled}{}{}{}
+
+%=========================================================
+% Custom Commands
+%=========================================================
+\newcommand\asteriskfill{\leavevmode\xleaders\hbox{$\ast$}\hfill\kern0pt}
+
+\newcommand\ltSwitchResource[1]{\renewcommand\langLeft{#1}}
+\newcommand\ltSwitchToDefault{\renewcommand\langLeft{\ltLeftMain}}
+
+\newcommand\ltSid[2]{\ExecuteMetaData[\ltResourceDir\langLeft/"#1"]{#2} \ifdef{\showKeys}{\tiny #1:#2\normalsize}{}} % to look up values by an id
+
+\newcommand\ltActor[1]{\ifdef{\actorOnSeparateLine}{\noindent\textcolor{red}{#1}\newline}{\noindent\textcolor{red}{\ignorespaces#1\unskip:}}}
+\newcommand\ltBlack[1]{#1}
+\newcommand\ltCover[1]{\huge{#1}}
+\newcommand\ltDesignation[1]{#1}
+\newcommand\ltDialog[1]{#1}
+\newcommand\ltHymn[1]{#1}
+\newcommand\ltHymnlinelast[1]{#1}
+\newcommand\ltInaudible[1]{#1}
+\newcommand\ltTitle[1]{#1}
+\newcommand\ltMelody[1]{#1}
+\newcommand\ltMixed[1]{#1}
+\newcommand\ltMode[1]{#1}
+\newcommand\ltReading[1]{#1}
+\newcommand\ltRed[1]{\textcolor{red}{#1}}
+\newcommand\ltRubric[1]{\textcolor{red}{#1}}
+\newcommand\ltVerse[1]{#1}
+

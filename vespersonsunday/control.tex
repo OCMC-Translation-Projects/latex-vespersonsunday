@@ -1,0 +1,77 @@
+% Author: Michael Colburn
+% Purpose: controls various options for typesetting liturgical text
+
+%==================================================
+% Show keys?
+%
+% Controls whether the PDF will display the key used to retrieve the
+% text.
+%
+\def\showKeys{} % comment out to NOT display keys
+% 
+%==================================================
+
+%==================================================
+% Show line numbers?
+%
+% Controls whether the PDF will a number for each line.
+%
+%\def\showLineNumbers{} % comment out to NOT display numbers
+% 
+%==================================================
+
+%==================================================
+% Actors on separate line?
+%
+% Controls whether the actor will appear on its on line.
+% For example, 
+%
+% If enabled:
+% Priest: In the name of the Father and of the Son...
+%
+% If not enabled:
+% Priest
+% In the name of the Father and of the Son...
+%
+%\def\actorOnSeparateLine{} % comment out to NOT display keys
+% 
+%==================================================
+
+%==================================================
+% One language or two?
+% 
+% Controls whether we will have one language (monolingual)
+% or two languages (bilingual)
+% Bilingual text is typeset as two columns on each page.
+%
+%\newcommand*{\createbilingual}{} % comment out to do monolingual
+%
+%==================================================
+
+%==================================================
+% the name of the directory contain the language tex files
+\def\ltResourceDir{resources/}
+% 
+%==================================================
+
+%==================================================
+% languages
+\def\ltLeftMain{"en_UK_lash"}
+\def\ltLeftAlt{"en_KE_oak"}
+\def\ltLeftLextionaryMain{"en_US_rsv"}
+\def\ltLeftLextionaryAlt{"en_US_saas"}
+% 
+%==================================================
+
+%==================================================
+% Which language or languages?
+% 
+% Controls language or languages to use.
+% Each language must have a folder with that name.
+% If you are typesetting just one language (monolingual)
+% then comment out the \def\langRight
+%
+\def\langLeft{\ltLeftMain} % if monolingual, only this language will be used
+\def\langRight{"gr_gr_cog"} 
+%
+%==================================================
